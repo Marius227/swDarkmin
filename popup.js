@@ -26,10 +26,10 @@ function updateStatus(enabled) {
     const tab = tabs[0];
     const isAdmin = tab && tab.url && tab.url.includes('/admin');
     if (isAdmin) {
-      status.textContent = enabled ? 'Dark Mode aktiv' : 'Dark Mode deaktiviert';
+      status.textContent = enabled ? 'Dark Mode active' : 'Dark Mode disabled';
       status.className = 'status' + (enabled ? ' active' : '');
     } else {
-      status.textContent = 'Nicht auf einer Admin-Seite';
+      status.textContent = 'Not on an admin page';
       status.className = 'status';
     }
   });

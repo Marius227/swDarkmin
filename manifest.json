@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Shopware Admin Dark Mode",
   "version": "1.0",
-  "description": "Schaltet den Dark Mode im Shopware Admin ein",
+  "description": "Enables dark mode in the Shopware Admin panel",
   "permissions": ["storage", "activeTab"],
   "host_permissions": ["<all_urls>"],
   "content_scripts": [

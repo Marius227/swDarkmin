@@ -5,8 +5,8 @@ function applyDarkMode(enabled) {
   if (!app) return;
   if (enabled) {
     app.setAttribute('data-theme', 'dark');
-    // Auch auf <html> und <body> setzen, da Vue Popups/Context-Menus
-    // per Teleport direkt in <body> rendert – außerhalb von #app
+    // Also apply to <html> and <body>, as Vue teleports popups/context menus
+    // directly into <body> — outside of #app
     document.documentElement.setAttribute('data-theme', 'dark');
     document.body.setAttribute('data-theme', 'dark');
     document.documentElement.style.colorScheme = 'dark';
@@ -24,11 +24,11 @@ function isAdminPage() {
 
 if (isAdminPage()) {
   chrome.storage.local.get(STORAGE_KEY, (result) => {
-    const enabled = result[STORAGE_KEY] !== false; // default: an
+    const enabled = result[STORAGE_KEY] !== false; // default: enabled
     applyDarkMode(enabled);
   });
 
-  // #app wird von Vue.js gerendert – bei Verzögerung nochmal versuchen
+  // #app is rendered by Vue.js — retry with a MutationObserver if it isn't mounted yet
   const observer = new MutationObserver(() => {
     const app = document.getElementById('app');
     if (app) {

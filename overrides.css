@@ -1,17 +1,17 @@
-/* Plugin-Seite: Header */
+/* Plugin page: header area */
 [data-theme="dark"] .sw-meteor-page__head-area {
     background: #101013 !important;
     color: #fafbfe !important;
     border-bottom-color: #3d3e42 !important;
 }
 
-/* Plugin-Seite: Titel (hardcoded #0c1f34) */
+/* Plugin page: title (hardcoded color #0c1f34 overridden) */
 [data-theme="dark"] .sw-meteor-page__smart-bar-title,
 [data-theme="dark"] .sw-meteor-page__smart-bar-title * {
     color: #fafbfe !important;
 }
 
-/* Linie unter der Suchleiste – alle möglichen Verursacher */
+/* Border below the search bar — all possible sources */
 html[data-theme="dark"] .sw-page .sw-page__head-area,
 html[data-theme="dark"] .sw-page__head-area,
 html[data-theme="dark"] .sw-meteor-page .sw-meteor-page__head-area,
@@ -21,7 +21,7 @@ html[data-theme="dark"] .sw-meteor-page__head-area {
     box-shadow: none !important;
 }
 
-/* Plugin-Kacheln */
+/* Plugin cards */
 [data-theme="dark"] .sw-meteor-card,
 [data-theme="dark"] .sw-extension-card-base,
 [data-theme="dark"] .sw-self-maintained-extension-card {
@@ -39,13 +39,13 @@ html[data-theme="dark"] .sw-meteor-page__head-area {
     background: #101013 !important;
 }
 
-/* Einstellungen: Gruppen-Trennlinie */
+/* Settings: group divider */
 [data-theme="dark"] .sw-settings__content-group,
 [data-theme="dark"] .sw-settings__content-group-general {
     border-color: #3d3e42 !important;
 }
 
-/* Input-Felder (Login + Suche) */
+/* Input fields (login + search) */
 [data-theme="dark"] .mt-field input,
 [data-theme="dark"] .mt-field select,
 [data-theme="dark"] .mt-field textarea {
@@ -60,25 +60,25 @@ html[data-theme="dark"] .sw-meteor-page__head-area {
 [data-theme="dark"] .mt-field textarea::placeholder {
     color: #71717a !important;
 }
-/* Autofill-Override (Chrome setzt sonst weißen Box-Shadow) */
+/* Autofill override — Chrome injects a white box-shadow by default */
 [data-theme="dark"] .mt-field input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px #27272a inset !important;
     -webkit-text-fill-color: #fafbfe !important;
 }
 
-/* Meteor-Page Hintergrund */
+/* Meteor page background */
 [data-theme="dark"] .sw-meteor-page {
     background-color: #101013 !important;
 }
 
-/* Verkaufskanäle / Search-Type-Button */
+/* Sales channels / search type button */
 [data-theme="dark"] .sw-search-bar__type--v2,
 [data-theme="dark"] .sw-search-bar__type {
     background-color: #1e3228 !important;
     color: #6ee7a0 !important;
 }
 
-/* Status-Badges */
+/* Status badges */
 [data-theme="dark"] .sw-status--green {
     background-color: #14532d !important;
     color: #4ade80 !important;
