@@ -1,8 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Shopware Admin Dark Mode",
+  "name": "swDarkmin",
   "version": "1.0",
-  "description": "Enables dark mode in the Shopware Admin panel",
+  "description": "A sleek dark mode extension for the Shopware administration.",
+  "background": {
+    "service_worker": "background.js"
+  },
   "permissions": ["storage", "activeTab"],
   "host_permissions": ["<all_urls>"],
   "content_scripts": [

@@ -1,5 +1,7 @@
 # Shopware Admin Dark Mode
 
+<img src="icons/darkmin-icon1.png" alt="Shopware Dark Mode Icon" width="80">
+
 A Chrome extension that applies a dark theme to the Shopware 6 Admin panel.
 
 ## Features

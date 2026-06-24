@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Shopware Admin Dark Mode — Installed</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:        #09090c;
+      --blue:      #8b5cf6;
+      --cyan:      #c084fc;
+      --indigo:    #6d28d9;
+      --text:      #f1f5f9;
+      --muted:     #475569;
+      --border:    rgba(255,255,255,0.07);
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    /* ── Orbs ─────────────────────────────── */
+    .orb-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb {
+      position: absolute;
+      filter: blur(90px);
+      opacity: 0;
+      animation: orbReveal 1.8s ease forwards;
+      will-change: transform;
+      transition: transform 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Each orb gets its own organic shape via border-radius */
+    .orb-1 {
+      width: 700px; height: 500px;
+      top: -180px; left: -200px;
+      background: radial-gradient(ellipse at 40% 50%, rgba(139,92,246,0.45), transparent 70%);
+      border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+      animation-delay: 0.1s;
+    }
+    .orb-2 {
+      width: 600px; height: 700px;
+      bottom: -250px; right: -150px;
+      background: radial-gradient(ellipse at 60% 40%, rgba(109,40,217,0.40), transparent 70%);
+      border-radius: 40% 60% 45% 55% / 58% 42% 60% 40%;
+      animation-delay: 0.3s;
+    }
+    .orb-3 {
+      width: 400px; height: 400px;
+      top: 30%; right: 8%;
+      background: radial-gradient(ellipse at 50% 50%, rgba(192,132,252,0.30), transparent 70%);
+      border-radius: 55% 45% 62% 38% / 44% 56% 44% 56%;
+      animation-delay: 0.6s;
+    }
+    .orb-4 {
+      width: 350px; height: 300px;
+      bottom: 10%; left: 5%;
+      background: radial-gradient(ellipse at 50% 50%, rgba(139,92,246,0.20), transparent 70%);
+      border-radius: 70% 30% 50% 50% / 40% 60% 40% 60%;
+      animation-delay: 0.4s;
+    }
+
+    @keyframes orbReveal {
+      to { opacity: 1; }
+    }
+
+    /* Subtle noise grain overlay */
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ── Content ──────────────────────────── */
+    main {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      width: 100%;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: rgba(8,112,255,0.08);
+      margin-bottom: 28px;
+
+      opacity: 0;
+      transform: translateY(10px);
+      animation: rise 0.6s ease 0.4s forwards;
+    }
+
+    .badge::before {
+      content: '';
+      display: block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 8px var(--blue);
+    }
+
+    .icon-wrap {
+      margin-bottom: 28px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: rise 0.7s ease 0.55s forwards;
+    }
+
+    .icon-wrap img {
+      filter: drop-shadow(0 0 24px rgba(139,92,246,0.4));
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 4vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      text-align: center;
+      text-wrap: balance;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      white-space: nowrap;
+      margin-bottom: 18px;
+
+      opacity: 0;
+      transform: translateY(18px);
+      animation: rise 0.7s ease 0.7s forwards;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--muted);
+      text-align: center;
+      max-width: 480px;
+      margin-bottom: 48px;
+
+      opacity: 0;
+      transform: translateY(18px);
+      animation: rise 0.7s ease 0.85s forwards;
+    }
+
+    .hint {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 56px;
+
+      opacity: 0;
+      transform: translateY(18px);
+      animation: rise 0.7s ease 1.0s forwards;
+    }
+
+    .hint kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 5px;
+      font-family: ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+      font-size: 11px;
+      color: var(--text);
+    }
+
+    footer {
+      font-family: ui-monospace, 'Cascadia Code', 'SF Mono', monospace;
+      font-size: 12px;
+      color: #334155;
+      letter-spacing: 0.04em;
+
+      opacity: 0;
+      animation: rise 0.7s ease 1.15s forwards;
+    }
+
+    footer .heart {
+      color: var(--blue);
+      filter: drop-shadow(0 0 6px var(--blue));
+    }
+
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0) rotate(0deg); }
+      15%  { transform: translateX(-12px) rotate(-3deg); }
+      30%  { transform: translateX(12px)  rotate(3deg); }
+      45%  { transform: translateX(-9px)  rotate(-2deg); }
+      60%  { transform: translateX(9px)   rotate(2deg); }
+      75%  { transform: translateX(-5px)  rotate(-1deg); }
+    }
+
+    @keyframes flashOut {
+      0%   { opacity: 0.9; }
+      100% { opacity: 0; }
+    }
+
+    .icon-wrap img.warning {
+      filter: drop-shadow(0 0 40px rgba(220, 80, 80, 0.8)) drop-shadow(0 0 80px rgba(220, 80, 80, 0.4));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .orb, .badge, .icon-wrap, h1, p, .hint, footer {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb-layer">
+    <div class="orb orb-1" data-depth="0.04"></div>
+    <div class="orb orb-2" data-depth="0.07"></div>
+    <div class="orb orb-3" data-depth="0.11"></div>
+    <div class="orb orb-4" data-depth="0.05"></div>
+  </div>
+
+  <div class="grain"></div>
+
+  <main>
+    <div class="content">
+      <div class="badge">Successfully installed</div>
+
+      <div class="icon-wrap">
+        <img src="icons/darkmin-icon1.png" alt="Shopware Dark Mode Icon" style="width:320px;height:auto;">
+      </div>
+
+      <h1>Shopware Admin<br><span>Dark Mode</span></h1>
+
+      <p>Dark theme for the Shopware Admin panel. Click the extension icon in your toolbar to toggle it on any admin page.</p>
+
+      <div class="hint">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM8 5a.75.75 0 1 1 0 1.5A.75.75 0 0 1 8 5zm0 2.5a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 7.5z" fill="#475569"/>
+        </svg>
+        Pin the extension with <kbd>⋯</kbd> → <kbd>Pin</kbd> for quick access
+      </div>
+
+      <footer>with <span class="heart">♥</span> by Marius2207</footer>
+    </div>
+  </main>
+
+  <script>
+    const orbs = document.querySelectorAll('.orb');
+    const cx = () => window.innerWidth / 2;
+    const cy = () => window.innerHeight / 2;
+
+    document.addEventListener('mousemove', (e) => {
+      const dx = (e.clientX - cx()) / cx();
+      const dy = (e.clientY - cy()) / cy();
+
+      orbs.forEach(orb => {
+        const depth = parseFloat(orb.dataset.depth);
+        const tx = dx * depth * window.innerWidth * 0.5;
+        const ty = dy * depth * window.innerHeight * 0.5;
+        orb.style.transform = `translate(${tx}px, ${ty}px)`;
+      });
+    });
+
+    const icon = document.querySelector('.icon-wrap img');
+    let iconWidth = 320;
+    let step = 120;
+    let exploding = false;
+
+    icon.style.cursor = 'pointer';
+
+    icon.addEventListener('click', () => {
+      if (exploding) return;
+
+      // Explode when icon fills the screen
+      if (iconWidth >= window.innerWidth * 0.88) {
+        triggerExplosion();
+        return;
+      }
+
+      iconWidth += step;
+      step = Math.round(step * 1.45); // steps accelerate
+      icon.style.transition = 'width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+      icon.style.width = iconWidth + 'px';
+
+      // Warning glow when getting close
+      if (iconWidth >= window.innerWidth * 0.55) {
+        icon.classList.add('warning');
+        icon.style.animation = 'shake 0.35s ease';
+        icon.addEventListener('animationend', () => icon.style.animation = '', { once: true });
+      }
+    });
+
+    function triggerExplosion() {
+      exploding = true;
+      icon.classList.remove('warning');
+
+      // Violent shake before boom
+      icon.style.animation = 'shake 0.25s ease 3';
+      setTimeout(() => {
+        // Flash
+        const flash = document.createElement('div');
+        flash.style.cssText = 'position:fixed;inset:0;background:#fff;z-index:999;pointer-events:none;animation:flashOut 0.5s ease forwards;';
+        document.body.appendChild(flash);
+
+        // Particles
+        const rect = icon.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const colors = ['#8b5cf6','#c084fc','#6d28d9','#f1f5f9','#ddd6fe','#e879f9','#fff'];
+
+        for (let i = 0; i < 50; i++) {
+          const p = document.createElement('div');
+          const angle = (i / 50) * Math.PI * 2 + Math.random() * 0.3;
+          const dist  = 150 + Math.random() * 600;
+          const size  = 6 + Math.random() * 22;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const dur   = 0.5 + Math.random() * 0.8;
+
+          p.style.cssText = `
+            position:fixed; width:${size}px; height:${size}px;
+            background:${color}; border-radius:${Math.random() > 0.4 ? '50%' : '3px'};
+            left:${cx}px; top:${cy}px; pointer-events:none; z-index:998;
+            transform:translate(-50%,-50%);
+            transition: transform ${dur}s cubic-bezier(.2,.8,.4,1), opacity ${dur + 0.2}s ease;
+          `;
+          document.body.appendChild(p);
+
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            const tx = Math.cos(angle) * dist;
+            const ty = Math.sin(angle) * dist;
+            p.style.transform = `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) rotate(${Math.random()*720}deg) scale(0)`;
+            p.style.opacity = '0';
+          }));
+
+          setTimeout(() => p.remove(), (dur + 0.3) * 1000);
+        }
+
+        // Hide icon during explosion
+        icon.style.transition = 'opacity 0.15s';
+        icon.style.opacity = '0';
+
+        // Reset after explosion
+        setTimeout(() => {
+          iconWidth = 320;
+          step = 120;
+          icon.style.transition = 'none';
+          icon.style.width = iconWidth + 'px';
+          icon.style.animation = '';
+          setTimeout(() => {
+            icon.style.transition = 'opacity 0.4s';
+            icon.style.opacity = '1';
+            flash.remove();
+            exploding = false;
+          }, 100);
+        }, 900);
+      }, 750);
+    }
+  </script>
+</body>
+</html>
