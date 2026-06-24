@@ -1,0 +1,120 @@
+/* Plugin-Seite: Header */
+[data-theme="dark"] .sw-meteor-page__head-area {
+    background: #101013 !important;
+    color: #fafbfe !important;
+    border-bottom-color: #3d3e42 !important;
+}
+
+/* Plugin-Seite: Titel (hardcoded #0c1f34) */
+[data-theme="dark"] .sw-meteor-page__smart-bar-title,
+[data-theme="dark"] .sw-meteor-page__smart-bar-title * {
+    color: #fafbfe !important;
+}
+
+/* Linie unter der Suchleiste – alle möglichen Verursacher */
+html[data-theme="dark"] .sw-page .sw-page__head-area,
+html[data-theme="dark"] .sw-page__head-area,
+html[data-theme="dark"] .sw-meteor-page .sw-meteor-page__head-area,
+html[data-theme="dark"] .sw-meteor-page__head-area {
+    border-bottom: 1px solid #3d3e42 !important;
+    border-color: #3d3e42 !important;
+    box-shadow: none !important;
+}
+
+/* Plugin-Kacheln */
+[data-theme="dark"] .sw-meteor-card,
+[data-theme="dark"] .sw-extension-card-base,
+[data-theme="dark"] .sw-self-maintained-extension-card {
+    background: #18181b !important;
+    border-color: #3d3e42 !important;
+    color: #fafbfe !important;
+}
+[data-theme="dark"] .sw-meteor-card .sw-meteor-card__footer,
+[data-theme="dark"] .sw-extension-card-base .sw-extension-card-base__info {
+    background-color: #27272a !important;
+    border-top-color: #3d3e42 !important;
+    border-bottom-color: #3d3e42 !important;
+}
+[data-theme="dark"] .sw-self-maintained-extension-card.is--deactivated {
+    background: #101013 !important;
+}
+
+/* Einstellungen: Gruppen-Trennlinie */
+[data-theme="dark"] .sw-settings__content-group,
+[data-theme="dark"] .sw-settings__content-group-general {
+    border-color: #3d3e42 !important;
+}
+
+/* Input-Felder (Login + Suche) */
+[data-theme="dark"] .mt-field input,
+[data-theme="dark"] .mt-field select,
+[data-theme="dark"] .mt-field textarea {
+    background: #27272a !important;
+    color: #fafbfe !important;
+}
+[data-theme="dark"] .mt-field .mt-block-field__block {
+    background: #27272a !important;
+    border-color: #3d3e42 !important;
+}
+[data-theme="dark"] .mt-field input::placeholder,
+[data-theme="dark"] .mt-field textarea::placeholder {
+    color: #71717a !important;
+}
+/* Autofill-Override (Chrome setzt sonst weißen Box-Shadow) */
+[data-theme="dark"] .mt-field input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #27272a inset !important;
+    -webkit-text-fill-color: #fafbfe !important;
+}
+
+/* Meteor-Page Hintergrund */
+[data-theme="dark"] .sw-meteor-page {
+    background-color: #101013 !important;
+}
+
+/* Verkaufskanäle / Search-Type-Button */
+[data-theme="dark"] .sw-search-bar__type--v2,
+[data-theme="dark"] .sw-search-bar__type {
+    background-color: #1e3228 !important;
+    color: #6ee7a0 !important;
+}
+
+/* Status-Badges */
+[data-theme="dark"] .sw-status--green {
+    background-color: #14532d !important;
+    color: #4ade80 !important;
+}
+[data-theme="dark"] .sw-status--green .sw-color-badge {
+    background-color: #4ade80 !important;
+}
+
+[data-theme="dark"] .sw-status--orange {
+    background-color: #431407 !important;
+    color: #fb923c !important;
+}
+[data-theme="dark"] .sw-status--orange .sw-color-badge {
+    background-color: #fb923c !important;
+}
+
+[data-theme="dark"] .sw-status--blue {
+    background-color: #1e3a5f !important;
+    color: #60a5fa !important;
+}
+[data-theme="dark"] .sw-status--blue .sw-color-badge {
+    background-color: #60a5fa !important;
+}
+
+[data-theme="dark"] .sw-status--red {
+    background-color: #450a0a !important;
+    color: #f87171 !important;
+}
+[data-theme="dark"] .sw-status--red .sw-color-badge {
+    background-color: #f87171 !important;
+}
+
+[data-theme="dark"] .sw-status--gray {
+    background-color: #27272a !important;
+    color: #a1a1aa !important;
+}
+[data-theme="dark"] .sw-status--gray .sw-color-badge {
+    background-color: #a1a1aa !important;
+}

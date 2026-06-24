@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Shopware Dark Mode</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 240px;
+      background: #18181b;
+      color: #fafafa;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      width: 28px;
+      height: 28px;
+    }
+
+    h1 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fafafa;
+    }
+
+    .subtitle {
+      font-size: 11px;
+      color: #71717a;
+      margin-top: 2px;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #27272a;
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .toggle-label {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      inset: 0;
+      background: #52525b;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .slider::before {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 3px;
+      top: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+
+    input:checked + .slider {
+      background: #0870ff;
+    }
+
+    input:checked + .slider::before {
+      transform: translateX(20px);
+    }
+
+    .status {
+      margin-top: 12px;
+      font-size: 11px;
+      color: #52525b;
+      text-align: center;
+    }
+
+    .status.active {
+      color: #0870ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <svg class="logo" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="14" cy="14" r="14" fill="#0870ff"/>
+      <path d="M8 14a6 6 0 1 1 12 0A6 6 0 0 1 8 14z" fill="#18181b"/>
+      <path d="M14 8v6l4 2" stroke="#0870ff" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <h1>Shopware Dark Mode</h1>
+      <div class="subtitle">Admin-Bereich</div>
+    </div>
+  </div>
+
+  <div class="toggle-row">
+    <span class="toggle-label">Dark Mode</span>
+    <label class="toggle">
+      <input type="checkbox" id="toggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="status" id="status">Nicht auf einer Admin-Seite</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
